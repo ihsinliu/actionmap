@@ -1,0 +1,40 @@
+project:
+  name: 'Actionmap-Fa21-Group70'
+  owner: 'cs169'
+  teamId: '70'
+  identities:
+    pivotal:
+      url: 'https://www.pivotaltracker.com/n/projects/2540646'
+    heroku:
+      url: 'https://protected-plateau-13982.herokuapp.com/'
+  members:
+    member1:
+      name: 'Shenghan'
+      surname: 'Zhang' 
+      githubUsername: 'ZhengShenghan'
+      pivotalUsername: 'shenghanz'
+      herokuEmail: 'zhengshh_prime@berkeley.edu'
+    member2:
+      name: 'Andrew'
+      surname: 'Mo' 
+      githubUsername: 'andrewmopro'
+      pivotalUsername: 'andrewmo1'
+      herokuEmail: 'andrewmo@berkeley.edu'
+    member3:
+      name: 'Yixin'
+      surname: 'Liu' 
+      githubUsername: 'ihsinliu'
+      pivotalUsername: 'IHSINLIU'
+      herokuEmail: 'liuyx1999@berkeley.edu'
+    member4:
+      name: 'Matthew'
+      surname: 'Cuan' 
+      githubUsername: 'mattcuan'
+      pivotalUsername: 'mattcuan'
+      herokuEmail: 'matthewcuan@berkeley.edu' 
+    member5:
+      name: 'Yuankai'
+      surname: 'Yang' 
+      githubUsername: ''
+      pivotalUsername: ''
+      herokuEmail: ''
