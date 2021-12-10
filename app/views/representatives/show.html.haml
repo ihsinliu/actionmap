@@ -1,16 +1,28 @@
-%h2
-  Profile of
-  %em= @representative.name
-%ul#details
-  %li
-    Name:
-    \#{@representative.name}
-  %li
-    OCD ID:
-    \#{@representative.ocdid}
-    Party:
-    \#{@representative.party}
-    photo:
-    \#{@representative.photoUrl}
-    address:
-    \#{@representative.street}
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h3.text-center
+        .card-body
+            .card-text
+                %dl.row
+                    %dl.col-4.my-auto.mx-auto
+                    %img.img-fluid{ src: @representative.photoUrl }/
+                %dl.row
+                    %dt.col-sm-3.text-md-right Name:
+                    %dt.col-sm-9
+                        = @representative.name
+                %dl.row
+                    %dt.col-sm-3.text-md-right OCD ID:
+                    %dt.col-sm-9
+                        = @representative.ocdid
+                %dl.row
+                    %dt.col-sm-3.text-md-right Title:
+                    %dt.col-sm-9
+                        = @representative.title
+                %dl.row
+                    %dt.col-sm-3.text-md-right Party:
+                    %dt.col-sm-9
+                        = @representative.party
+                %dl.row
+                    %dt.col-sm-3.text-md-right Address:
+                    %dt.col-sm-9
+                        = @representative.address

@@ -34,12 +34,13 @@ Rails.application.routes.draw do
                                                                       via: [:post]
         get '/representatives/:representative_id/my_news_item/:id' => 'my_news_items#edit',
             :as                                                    => :edit_my_news_item
+        get '/representatives/:representative_id/my_news_item/:id' => 'my_news_items#rate',
+            :as                                                    => :rate_my_news_item
+        get '/representatives/:representative_id/my_news_item/:id' => 'my_news_items#report',
+            :as                                                    => :report_my_news_item
+        get '/representatives/:representative_id/my_news_item/:id/delete' => 'my_news_items#delete', :as => :delete_my_news_item
         match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#update',
                                                                       via: %i[put patch]
-        match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#destroy',
-                                                                      via: [:delete]
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
-    #get '/representatives/show/:id' => 'representatives#show' :as =>'representative_profile'
-    
 end

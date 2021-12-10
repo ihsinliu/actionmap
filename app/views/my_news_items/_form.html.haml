@@ -13,6 +13,12 @@
             = text_field :news_item, :title, { class: 'form-control', placeholder: 'Brief title of article...' }
     .form-group.row
         .col-sm-2
+            = label :news_item, :issue, 'Issue', class: 'col-form-label'
+        .col-sm-10
+            = select :news_item, :issue, issue_list, { include_blank: false },
+            class: 'form-control'
+    .form-group.row
+        .col-sm-2
             = label :news_item, :link, 'Link', class: 'col-form-label'
         .col-sm-10
             = text_field :news_item, :link, { class: 'form-control', placeholder: 'Link to external article...' }
@@ -26,7 +32,14 @@
         .col-sm-2
             = label :news_item, :representative_id, class: 'col-form-label'
         .col-sm-10
-            = select :news_item, :representative_id, representatives_list, { include_blank: true },
+            = select :news_item, :representative_id, representatives_list, { include_blank: false },
             class: 'form-control'
+    .form-group.row
+        .col-sm-2
+            = label :news_item, :rating, class: 'col-form-label'
+        .col-sm-10
+            = select :news_item, :rating, ratings_list, { include_blank: false }, class: 'form-control'
+    .form-group.row
+        = f.hidden_field :owner, value: the_owner, class: 'form-control'
     .actions
         = f.submit 'Save', class: 'btn btn-primary'

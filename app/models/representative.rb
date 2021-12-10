@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'json'
 class Representative < ApplicationRecord
     has_many :news_items, dependent: :delete_all
 
@@ -7,31 +8,51 @@ class Representative < ApplicationRecord
         reps = []
 
         rep_info.officials.each_with_index do |official, index|
-          if official.name.eql? "VACANT"
-            next
-          end
-            ocdid_temp = ''
-            title_temp = ''
-            
-            rep_info.offices.each do |office|
-                if office.official_indices.include? index
-                    ocdid_temp = office.division_id
-                    title_temp = office.name
-                end
-            end
-          
-          #state = addr[:state]
-          #zip = addr[:zip]
-          #city = addr[:city]
-          #street = addr[:line1]
+            next if official.name.eql? 'VACANT'
 
-          rep = Representative.create!({ name: official.name, ocdid: ocdid_temp, title: title_temp, photoUrl: official.photo_url, party: official.party, street: official.address})
-          #address street, city, state, zip
-          if !reps.include? rep
-            reps.push(rep)
-          end
+            rep_info.offices.each do |office|
+                office_contains_official(office, official, index)
+            end
+            create_rep(official.name, official.photo_url, official.party, official.address.to_s)
+
+            reps.push(@rep)
         end
 
         reps
+    end
+
+    def self.create_rep(name, photourl, party, address)
+        temp = address.split(/"([^"]*)"/)
+        res = create_string(temp)
+        rep_temp = Representative.where(name: name)
+        if !rep_temp.empty?
+            rep_temp.update({ name: name, ocdid: @ocdid_temp, title: @title_temp, photoUrl: photourl,
+              party: party, address: res.join })
+            @rep = rep_temp.first
+        else
+            @rep = Representative.create({ name: name, ocdid: @ocdid_temp, title: @title_temp, photoUrl: photourl,
+                party: party, address: res.join })
+        end
+    end
+
+    def self.office_contains_official(office, _official, index)
+        return unless office.official_indices.include? index
+
+        @ocdid_temp = office.division_id
+        @title_temp = office.name
+    end
+
+    def self.create_string(temp)
+        res = []
+        unless temp.empty?
+            res[0] = temp[3]
+            res[1] = ', '
+            res[2] = temp[1]
+            res[3] = ', '
+            res[4] = temp[5]
+            res[5] = ', '
+            res[6] = temp[7]
+        end
+        res
     end
 end

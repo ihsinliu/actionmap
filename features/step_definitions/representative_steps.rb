@@ -1,4 +1,6 @@
-Then /^I should (not )?see the following representatives: (.*)$/ do |no, reps_list|
+# frozen_string_literal: true
+
+Then(/^I should (not )?see the following representatives: (.*)$/) do |no, reps_list|
     reps = reps_list.split(', ')
     reps.each do |rep|
         if no.nil?
@@ -9,7 +11,6 @@ Then /^I should (not )?see the following representatives: (.*)$/ do |no, reps_li
     end
 end
 
-When /^I press "(.*)" button/ do |button|
-  click_button button
+When(/^I press "(.*)" button/) do |button|
+    click_button button
 end
-

@@ -24,7 +24,7 @@ project:
       name: 'Yixin'
       surname: 'Liu' 
       githubUsername: 'ihsinliu'
-      pivotalUsername: 'IHSINLIU'
+      pivotalUsername: 'ihsinliu'
       herokuEmail: 'liuyx1999@berkeley.edu'
     member4:
       name: 'Matthew'

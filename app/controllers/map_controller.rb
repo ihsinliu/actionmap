@@ -9,7 +9,7 @@ class MapController < ApplicationController
 
     # Render the map of the counties of a specific state.
     def state
-        @state = State.find_by(symbol: params[:state_symbol].upcase)
+        fetch_state
         handle_state_not_found && return if @state.nil?
 
         @county_details = @state.counties.index_by(&:std_fips_code)
@@ -17,16 +17,24 @@ class MapController < ApplicationController
 
     # Render the map of a specific county.
     def county
-        @state = State.find_by(symbol: params[:state_symbol].upcase)
+        fetch_county
         handle_state_not_found && return if @state.nil?
-
-        @county = get_requested_county @state.id
-        handle_county_not_found && return if @state.nil?
+        handle_county_not_found && return if @county.nil?
 
         @county_details = @state.counties.index_by(&:std_fips_code)
+        redirect_to search_representatives_path("#{@county.name} #{@state.symbol}")
     end
 
     private
+
+    def fetch_state
+        @state = State.find_by(symbol: params[:state_symbol].upcase)
+    end
+
+    def fetch_county
+        @state = State.find_by(symbol: params[:state_symbol].upcase)
+        @county = get_requested_county @state.id
+    end
 
     def handle_state_not_found
         state_symbol = params[:state_symbol].upcase

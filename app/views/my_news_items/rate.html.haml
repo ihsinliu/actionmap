@@ -1,15 +1,20 @@
 .row.mt-2
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        %h1.text-center Edit news article
+        %h1.text-center Rate news article
 
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        = render 'form', news_item: @news_item,
+        = render 'form_rate', news_item: @news_item,
          form_url: representative_edit_my_news_item_path(@representative, @news_item),
          form_method: :put,
          representatives_list: @representatives_list,
          ratings_list: @ratings_list,
          issue_list: @issue_list,
-         the_owner: @news_item.owner
+         the_owner: @news_item.owner,
+         title: @news_item.title,
+         issue: @news_item.issue,
+         link: @news_item.link,
+         description: @news_item.description,
+         representative_id: @news_item.representative_id
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
         .clearfix.mt-3
             .float-right
